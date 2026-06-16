@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบบันทึกการตอบรับ</title>
+    <title>แบบตอบรับเข้าร่วมพิธีเปิด</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts (Sarabun) ฟอนต์สารบรรณเพื่อความเป็นทางการสูงสุด -->
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -36,7 +39,7 @@
         }
         
         .form-header {
-            padding-bottom: 1.2rem;
+            padding-bottom: 1.5rem;
             margin-bottom: 2.2rem;
             position: relative;
         }
@@ -48,7 +51,7 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 100px;
             height: 3px;
             background-color: var(--accent-gold);
             border-radius: 2px;
@@ -141,11 +144,14 @@
                 padding: 12px 0;
             }
             .form-card {
-                padding: 1.8rem 1.2rem;
+                padding: 2rem 1.2rem;
                 border-radius: 8px;
             }
             .form-header h2 {
                 font-size: 1.45rem;
+            }
+            .form-header p {
+                font-size: 0.9rem !important;
             }
             .form-label {
                 font-size: 1rem;
@@ -164,45 +170,58 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10 col-lg-7">
+        <div class="col-12 col-md-10 col-lg-8">
             
+            <!-- การ์ดแบบฟอร์มบันทึกข้อมูล -->
             <div class="form-card">
                 <div class="form-header text-center">
-                    <h2 class="fw-bold mb-2" style="color: var(--primary-dark-red);">
-                        <i class="fa-solid fa-file-invoice me-2"></i>ระบบบันทึกการตอบรับ
+                    <!-- ชื่อหัวข้อใหม่ -->
+                    <h2 class="fw-bold mb-3" style="color: var(--primary-dark-red);">
+                        <i class="fa-solid fa-file-signature me-2"></i>แบบตอบรับเข้าร่วมพิธีเปิด
                     </h2>
-                    <p class="text-muted small mb-0">กรุณาระบุข้อมูลรายละเอียดของท่านให้ครบถ้วนเพื่อบันทึกเข้าสู่ระบบ</p>
+                    <!-- ข้อความใต้หัวข้อ บรรทัดที่ 1 และ 2 ตามที่กำหนด -->
+                    <p class="fw-semibold text-secondary mb-1" style="font-size: 1.05rem; letter-spacing: 0.3px;">
+                        การแข่งขันประกวดสุนทรพจน์และความรู้ภาษาจีน “สะพานสู่ภาษาจีน”
+                    </p>
+                    <p class="text-muted mb-0" style="font-size: 0.95rem;">
+                        วันเสาร์ ที่ 20 มิถุนายน 2569 ณ โรงเรียนพิมานพิทยาสรรค์
+                    </p>
                 </div>
 
+                <!-- ฟอร์มกรอกข้อมูล -->
                 <form id="registrationForm" class="needs-validation" novalidate>
                     
+                    <!-- ช่องกรอก: โรงเรียน/หน่วยงาน -->
                     <div class="mb-3">
                         <label for="school" class="form-label">โรงเรียน / หน่วยงาน</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-school text-secondary"></i></span>
-                            <input type="text" class="form-control" id="school" placeholder="ระบุชื่อโรงเรียน หรือหน่วยงานของท่าน" required>
+                            <input type="text" class="form-control" id="school" required>
                         </div>
                         <div class="invalid-feedback">กรุณาระบุชื่อโรงเรียน หรือหน่วยงาน</div>
                     </div>
 
+                    <!-- ช่องกรอก: ชื่อ-นามสกุล -->
                     <div class="mb-3">
                         <label for="name" class="form-label">ชื่อ - นามสกุล</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-user text-secondary"></i></span>
-                            <input type="text" class="form-control" id="name" placeholder="ระบุชื่อและนามสกุล" required>
+                            <input type="text" class="form-control" id="name" required>
                         </div>
                         <div class="invalid-feedback">กรุณาระบุชื่อและนามสกุลของท่าน</div>
                     </div>
 
+                    <!-- ช่องกรอก: ตำแหน่ง -->
                     <div class="mb-4">
                         <label for="position" class="form-label">ตำแหน่ง</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-user-tie text-secondary"></i></span>
-                            <input type="text" class="form-control" id="position" placeholder="ระบุตำแหน่งหน้าที่การงาน" required>
+                            <input type="text" class="form-control" id="position" required>
                         </div>
                         <div class="invalid-feedback">กรุณาระบุตำแหน่งหน้าที่การงาน</div>
                     </div>
 
+                    <!-- ปุ่มส่งข้อมูล -->
                     <button type="submit" class="btn btn-submit w-100 shadow-sm" id="submitBtn">
                         <i class="fa-solid fa-paper-plane me-2"></i> ส่งข้อมูลบันทึกการตอบรับ
                     </button>
@@ -213,28 +232,34 @@
     </div>
 </div>
 
+<!-- Modal หน้าต่างป๊อปอัพแจ้งสถานะการบันทึก -->
 <div class="modal fade" id="statusModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-body text-center p-4">
                 
+                <!-- ตัวสลับไอคอนผ่านสคริปต์ -->
                 <div id="modalIcon"></div>
                 
+                <!-- ข้อความหัวข้อและรายละเอียด -->
                 <h4 id="modalTitle" class="fw-bold"></h4>
                 <p id="modalMessage" class="text-muted my-3"></p>
                 
+                <!-- กล่องสรุปผลแบบเรียบร้อยเป็นทางการ -->
                 <div id="modalSummaryBox" class="summary-box text-start d-none mb-4">
                     <p class="mb-2"><strong><i class="fa-solid fa-school me-2"></i>หน่วยงาน :</strong> <span id="sumSchool" class="text-dark"></span></p>
                     <p class="mb-2"><strong><i class="fa-solid fa-user me-2"></i>ชื่อผู้ส่ง :</strong> <span id="sumName" class="text-dark"></span></p>
                     <p class="mb-0"><strong><i class="fa-solid fa-user-tie me-2"></i>ตำแหน่ง :</strong> <span id="sumPosition" class="text-dark"></span></p>
                 </div>
                 
+                <!-- ปุ่มสำหรับปิดป๊อปอัพ -->
                 <button type="button" class="btn btn-dark px-4 py-2" data-bs-dismiss="modal" style="border-radius: 6px; font-weight: 500;">ปิดหน้าต่าง</button>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
