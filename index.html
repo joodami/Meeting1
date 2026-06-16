@@ -137,6 +137,11 @@
         .summary-box strong {
             color: var(--primary-dark-red);
         }
+
+        /* คลาสควบคุมการตัดคำขึ้นบรรทัดใหม่เฉพาะบนมือถือ */
+        .mobile-br {
+            display: none;
+        }
         
         /* Responsive สำหรับมือถือ */
         @media (max-width: 576px) {
@@ -151,7 +156,8 @@
                 font-size: 1.45rem;
             }
             .form-header p {
-                font-size: 0.9rem !important;
+                font-size: 0.95rem !important;
+                line-height: 1.6;
             }
             .form-label {
                 font-size: 1rem;
@@ -162,6 +168,10 @@
             .btn-submit {
                 font-size: 1rem;
                 padding: 0.85rem;
+            }
+            /* เปิดให้แท็ก <br> ทำงานเฉพาะบนจอมือถือ */
+            .mobile-br {
+                display: inline;
             }
         }
     </style>
@@ -175,16 +185,17 @@
             <!-- การ์ดแบบฟอร์มบันทึกข้อมูล -->
             <div class="form-card">
                 <div class="form-header text-center">
-                    <!-- ชื่อหัวข้อใหม่ -->
+                    <!-- หัวข้อหลัก -->
                     <h2 class="fw-bold mb-3" style="color: var(--primary-dark-red);">
                         <i class="fa-solid fa-file-signature me-2"></i>แบบตอบรับเข้าร่วมพิธีเปิด
                     </h2>
-                    <!-- ข้อความใต้หัวข้อ บรรทัดที่ 1 และ 2 ตามที่กำหนด -->
-                    <p class="fw-semibold text-secondary mb-1" style="font-size: 1.05rem; letter-spacing: 0.3px;">
-                        การแข่งขันประกวดสุนทรพจน์และความรู้ภาษาจีน “สะพานสู่ภาษาจีน”
+                    
+                    <!-- ส่วนข้อความย่อยที่บังคับตัดบรรทัดให้สวยงามในมือถือด้วยคลาส mobile-br -->
+                    <p class="fw-semibold text-secondary mb-0" style="font-size: 1.05rem; letter-spacing: 0.2px;">
+                        การแข่งขันประกวดสุนทรพจน์<br class="mobile-br">และความรู้ภาษาจีน “สะพานสู่ภาษาจีน”
                     </p>
-                    <p class="text-muted mb-0" style="font-size: 0.95rem;">
-                        วันเสาร์ ที่ 20 มิถุนายน 2569 ณ โรงเรียนพิมานพิทยาสรรค์
+                    <p class="text-muted mt-2 mb-0" style="font-size: 0.95rem;">
+                        วันเสาร์ ที่ 20 มิถุนายน 2569<br class="mobile-br"><span class="d-none d-sm-inline"> ณ </span>โรงเรียนพิมานพิทยาสรรค์
                     </p>
                 </div>
 
@@ -196,7 +207,7 @@
                         <label for="school" class="form-label">โรงเรียน / หน่วยงาน</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-school text-secondary"></i></span>
-                            <input type="text" class="form-control" id="school" required>
+                            <input type="text" class="form-control" id="school" placeholder="ระบุชื่อโรงเรียน หรือหน่วยงานของท่าน" required>
                         </div>
                         <div class="invalid-feedback">กรุณาระบุชื่อโรงเรียน หรือหน่วยงาน</div>
                     </div>
@@ -206,7 +217,7 @@
                         <label for="name" class="form-label">ชื่อ - นามสกุล</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-user text-secondary"></i></span>
-                            <input type="text" class="form-control" id="name" required>
+                            <input type="text" class="form-control" id="name" placeholder="ระบุชื่อและนามสกุล" required>
                         </div>
                         <div class="invalid-feedback">กรุณาระบุชื่อและนามสกุลของท่าน</div>
                     </div>
@@ -216,7 +227,7 @@
                         <label for="position" class="form-label">ตำแหน่ง</label>
                         <div class="input-group">
                             <span class="input-group-text bg-light"><i class="fa-solid fa-user-tie text-secondary"></i></span>
-                            <input type="text" class="form-control" id="position" required>
+                            <input type="text" class="form-control" id="position" placeholder="ระบุตำแหน่งหน้าที่การงาน" required>
                         </div>
                         <div class="invalid-feedback">กรุณาระบุตำแหน่งหน้าที่การงาน</div>
                     </div>
