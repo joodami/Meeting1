@@ -2,384 +2,175 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ตอบรับเข้าร่วมพิธีเปิดงาน</title>
-    
-    <!-- Bootstrap 5.3 CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบบันทึกการตอบรับ</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome 6.4 (สำหรับไอคอนพรีเมียม) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts - 'Sarabun' (ฟอนต์มาตรฐาน มีความคมชัดและเป็นทางการบนหน้าจอมือถือและเดสก์ท็อป) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ตั้งค่าฟอนต์สารบรรณทั่วทั้งเว็บ */
         body {
             font-family: 'Sarabun', sans-serif;
-            font-size: 16px;
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            background-color: #f4f6f9;
+            color: #333333;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #1e293b;
             padding: 20px 0;
-            overflow-x: hidden;
         }
-
-        /* ตกแต่งการ์ดหลัก */
-        .card-container {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            transition: transform 0.2s ease;
+        .form-card {
+            background: #ffffff;
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem;
         }
-
-        /* แถบสีหัวมุมพรีเมียม */
-        .card-top-bar {
-            background: linear-gradient(90deg, #4f46e5 0%, #06b6d4 100%);
-            height: 6px;
-            width: 100%;
+        .form-header {
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
-
-        /* ตกแต่งและควบคุมหัวข้อบรรทัดแรก */
-        .header-title-1 {
-            font-weight: 700;
-            color: #4f46e5;
-            letter-spacing: -0.5px;
-            font-size: clamp(1.25rem, 5vw, 1.85rem);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            width: 100%;
-            line-height: 1.35; /* ปรับลดความสูงของแถวเพื่อดึงข้อความให้ชิดขึ้น */
-            padding-top: 4px; /* ป้องกันสระและวรรณยุกต์บนสุดถูกบีบ */
-            padding-bottom: 1px; /* ป้องกันสระล่างสุดถูกบีบ */
-            margin-bottom: 2px !important; /* จัดช่องว่างระหว่างบรรทัดแรกและบรรทัดที่สองให้ชิดกระชับสวยงาม */
-        }
-
-        /* ตกแต่งและควบคุมหัวข้อบรรทัดที่สอง ให้พอดีบรรทัดเดียวในทุกหน้าจอเสมอ และขยายให้ใหญ่ขึ้นบนมือถือ */
-        .header-title-2 {
+        .form-label {
             font-weight: 600;
-            color: #1e1b4b;
-            letter-spacing: -0.3px;
-            font-size: clamp(13px, 3.8vw, 1.45rem); /* ปรับความชัดเจนของฟอนต์ขั้นต่ำบนมือถือจากเดิม 10.5px เป็น 13px */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            width: 100%;
-            line-height: 1.35; /* ปรับลดความสูงของแถวเพื่อดึงข้อความให้ชิดขึ้น */
-            padding-top: 4px; /* ป้องกันสระและวรรณยุกต์บนสุดถูกบีบ */
-            padding-bottom: 1px; /* ป้องกันสระล่างสุดถูกบีบ */
-            margin-bottom: 10px !important; /* จัดช่องว่างห่างจากวันที่ประชุมให้สวยงามไม่ห่างจนเกินไป */
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
         }
-
-        /* วันที่และสถานที่ปรับขนาดให้ใหญ่ขึ้นคมชัดขึ้นบนอุปกรณ์พกพา */
-        .small-text {
-            font-size: clamp(11.5px, 3.2vw, 1.05rem); /* ปรับขนาดขั้นต่ำจากเดิม 10px เป็น 11.5px ชัดเจนขึ้นมาก */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: block;
-            width: 100%;
-            line-height: 1.3;
-            padding-top: 2px;
-            padding-bottom: 2px;
-        }
-
-        .header-icon {
-            background: linear-gradient(135deg, #e0e7ff 0%, #cffafe 100%);
-            color: #4f46e5;
-            width: 58px; /* ปรับลดขนาดเล็กน้อยให้ดูน่ารักและกระชับขึ้น */
-            height: 58px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto 10px; /* ลดช่องว่างด้านล่าง */
-            font-size: 24px;
-        }
-
-        /* ตกแต่งฟิลด์กรอกข้อมูลแบบ Floating Labels */
-        .form-floating > .form-control {
-            border: 1.5px solid #cbd5e1;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #1e293b;
-            background-color: #f8fafc;
+        /* ปรับปรุง Input ให้กดง่ายในมือถือ และดูทันสมัย */
+        .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            font-size: 1rem;
             transition: all 0.2s ease-in-out;
-            height: calc(3.5rem + 2px);
-            padding: 1rem 0.75rem;
         }
-
-        .form-floating > .form-control:focus {
-            background-color: #ffffff;
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
         }
-
-        .form-floating > label {
-            color: #64748b;
-            padding-left: 12px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* ตกแต่งปุ่มส่งข้อมูลแบบขนาดใหญ่กดง่าย */
+        /* ปุ่มกดขนาดใหญ่ ชัดเจน */
         .btn-submit {
-            background: linear-gradient(90deg, #4f46e5 0%, #3b82f6 100%);
-            border: none;
-            border-radius: 12px;
-            padding: 14px;
-            font-size: 16px;
+            padding: 0.85rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #ffffff;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-            transition: all 0.2s ease;
-            min-height: 52px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
         }
-
-        .btn-submit:hover {
-            background: linear-gradient(90deg, #4338ca 0%, #2563eb 100%);
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
-        }
-
-        .btn-submit:active {
-            transform: scale(0.99);
-        }
-
-        /* การตกแต่งและออกแบบหน้าต่างแจ้งเตือน (Modal Alert) */
+        /* สไตล์ของ Modal แจ้งเตือน */
         .modal-content {
-            border-radius: 18px;
             border: none;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
-
-        .modal-header-custom {
-            padding: 24px 24px 8px;
-            text-align: center;
-            border: none;
-        }
-
-        .modal-body-custom {
-            padding: 8px 24px 24px;
-            text-align: center;
-        }
-
         .modal-icon-success {
-            color: #10b981;
-            font-size: 56px;
-            margin-bottom: 12px;
-            animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 4rem;
+            color: #198754;
+            margin-bottom: 1rem;
         }
-
         .modal-icon-error {
-            color: #ef4444;
-            font-size: 56px;
-            margin-bottom: 12px;
-            animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: 4rem;
+            color: #dc3545;
+            margin-bottom: 1rem;
         }
-
-        .info-summary-box {
-            background-color: #f8fafc;
-            border-radius: 12px;
-            padding: 12px 14px;
-            margin-top: 12px;
-            text-align: left;
-            border: 1.5px solid #e2e8f0;
-            font-size: 14px;
+        .summary-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #0d6efd;
+            border-radius: 6px;
+            padding: 1rem;
+            font-size: 0.95rem;
         }
-
-        /* รองรับการตรวจสอบความถูกต้อง (Validation styling) */
-        .was-validated .form-control:invalid {
-            border-color: #ef4444;
-            background-color: #fef2f2;
-        }
-
-        .was-validated .form-control:valid {
-            border-color: #10b981;
-            background-color: #f0fdf4;
-        }
-
-        /* แอนิเมชันสำหรับ Pop-up Modal */
-        @keyframes scaleUp {
-            0% { transform: scale(0.6); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .animate-fade-in {
-            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ตกแต่งส่วนท้ายหน้าเว็บ (Footer) ดีไซน์พรีเมียมและเป็นทางการ */
-        .footer-custom {
-            text-align: center;
-            margin-top: 24px;
-            padding-bottom: 5px;
-            font-size: clamp(11.5px, 3vw, 0.85rem);
-            color: #64748b;
-            letter-spacing: 0.3px;
-            animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .footer-custom span {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Media Queries เพื่อรองรับอุปกรณ์หน้าจอเล็กเป็นพิเศษ (เช่น มือถือแนวตั้ง 320px - 480px) */
+        
+        /* ปรับแต่งสำหรับหน้าจอมือถือขนาดเล็ก */
         @media (max-width: 576px) {
-            body {
-                padding: 10px;
-                font-size: 14px;
-                align-items: flex-start; /* เลื่อนตำแหน่งขึ้นไปด้านบนเพื่อให้ง่ายต่อการกรอกขณะคีย์บอร์ดมือถือเด้งขึ้นมา */
+            .form-card {
+                padding: 1.5rem;
+                border-radius: 12px;
             }
-            .card-container {
-                border-radius: 16px;
+            .form-header h2 {
+                font-size: 1.5rem;
             }
-            .p-4-custom {
-                padding: 20px 15px !important;
+            .form-label {
+                font-size: 1rem;
             }
-            .header-icon {
-                width: 54px;
-                height: 54px;
-                font-size: 22px;
-                margin-bottom: 8px;
-            }
-            .form-floating > label {
-                font-size: 14px;
-            }
-            .info-summary-box {
-                font-size: 13px;
-                padding: 10px;
-            }
-            .footer-custom {
-                margin-top: 16px;
+            .btn-submit {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container my-auto">
+<div class="container">
     <div class="row justify-content-center">
-        <!-- ปรับเปลี่ยนความกว้างตามสัดส่วนจอ (100% บนมือถือเล็ก, 83% บนแท็บเล็ต, 58% บนเดสก์ท็อป) -->
-        <div class="col-12 col-sm-10 col-md-9 col-lg-7">
+        <div class="col-12 col-md-10 col-lg-7">
             
-            <!-- การ์ดฟอร์มหลัก -->
-            <div class="card-container">
-                <div class="card-top-bar"></div>
-                
-                <div class="p-4 p-md-5 p-4-custom">
+            <div class="form-card">
+                <div class="form-header text-center">
+                    <h2 class="fw-bold text-primary mb-2"><i class="fa-solid fa-file-pen me-2"></i>ระบบบันทึกการตอบรับ</h2>
+                    <p class="text-muted mb-0">กรุณากรอกข้อมูลให้ครบถ้วนและถูกต้องเพื่อบันทึกเข้าสู่ระบบ</p>
+                </div>
+
+                <form id="registrationForm" class="needs-validation" novalidate>
                     
-                    <!-- ส่วนหัวฟอร์มสวยงามและเป็นทางการ จัดการขนาดบรรทัดเดียวในทุกหน้าจอ -->
-                    <div class="text-center mb-4">
-                        <div class="header-icon">
-                            <i class="fa-regular fa-calendar-check"></i>
+                    <div class="mb-3">
+                        <label for="school" class="form-label">โรงเรียน / หน่วยงาน</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-school"></i></span>
+                            <input type="text" class="form-control" id="school" placeholder="ระบุชื่อโรงเรียน หรือหน่วยงานของท่าน" required>
                         </div>
-                        <h1 class="header-title-1">ระบบตอบรับ</h1>
-                        <h2 class="header-title-2">เข้าร่วมเป็นเกียรติพิธีเปิด</h2>
-                        <p class="text-muted mb-0 small-text">การแข่งขันประกวดสุนทรพจน์และความรู้ภาษาจีน</p>
+                        <div class="invalid-feedback">กรุณากรอกชื่อโรงเรียน หรือหน่วยงาน</div>
                     </div>
 
-                    <!-- เริ่มแบบฟอร์ม (เปิดใช้ระบบตรวจสอบความถูกต้องของ HTML5 ผ่าน Bootstrap) -->
-                    <form id="registrationForm" class="needs-validation" novalidate autocomplete="off">
-                        
-                        <!-- 1. โรงเรียน / หน่วยงาน -->
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="school" placeholder="ระบุหน่วยงานของคุณ" required>
-                            <label for="school"><i class="fa-solid fa-school text-primary"></i>โรงเรียน / หน่วยงาน</label>
-                            <div class="invalid-feedback text-danger mt-1">
-                                <i class="fa-solid fa-circle-exclamation me-1"></i> กรุณากรอกชื่อโรงเรียนหรือหน่วยงานของคุณ
-                            </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">ชื่อ - นามสกุล</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-user"></i></span>
+                            <input type="text" class="form-control" id="name" placeholder="ระบุชื่อ-นามสกุล (เช่น นายสมชาย ใจดี)" required>
                         </div>
+                        <div class="invalid-feedback">กรุณากรอกชื่อ-นามสกุล</div>
+                    </div>
 
-                        <!-- 2. ชื่อ-สกุล -->
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="name" placeholder="ชื่อ และนามสกุล" required>
-                            <label for="name"><i class="fa-solid fa-user text-primary"></i>ชื่อ - สกุล ผู้เข้าร่วมพิธีเปิดงาน</label>
-                            <div class="invalid-feedback text-danger mt-1">
-                                <i class="fa-solid fa-circle-exclamation me-1"></i> กรุณากรอกชื่อและนามสกุลของคุณ
-                            </div>
+                    <div class="mb-4">
+                        <label for="position" class="form-label">ตำแหน่ง</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light text-muted"><i class="fa-solid fa-user-tie"></i></span>
+                            <input type="text" class="form-control" id="position" placeholder="ระบุตำแหน่งหน้าที่การงาน" required>
                         </div>
+                        <div class="invalid-feedback">กรุณากรอกตำแหน่ง</div>
+                    </div>
 
-                        <!-- 3. ตำแหน่ง -->
-                        <div class="form-floating mb-4">
-                            <input type="text" class="form-control" id="position" placeholder="ระบุตำแหน่ง" required>
-                            <label for="position"><i class="fa-solid fa-id-card text-primary"></i>ตำแหน่ง</label>
-                            <div class="invalid-feedback text-danger mt-1">
-                                <i class="fa-solid fa-circle-exclamation me-1"></i> กรุณากรอกตำแหน่งการทำงานของคุณ
-                            </div>
-                        </div>
-
-                        <!-- ปุ่มกดส่งข้อมูล -->
-                        <div class="d-grid mt-2">
-                            <button type="submit" id="submitBtn" class="btn btn-submit">
-                                <i class="fa-solid fa-paper-plane me-2"></i> ส่งข้อมูลบันทึกการตอบรับ
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+                    <button type="submit" class="btn btn-primary w-100 btn-submit shadow-sm" id="submitBtn">
+                        <i class="fa-solid fa-paper-plane me-2"></i> ส่งข้อมูลบันทึกการตอบรับ
+                    </button>
+                </form>
             </div>
-
-            <!-- ส่วนท้ายหน้าเว็บ (Footer) ดีไซน์เป็นทางการและสวยงามเป็นระเบียบ -->
-            <footer class="footer-custom">
-                <div class="d-flex align-items-center justify-content-center gap-2">
-                    <i class="fa-solid fa-graduation-cap text-primary" style="font-size: 1.05rem;"></i>
-                    <span class="fw-medium">สำนักงานอำนวยการ โรงเรียนพิมานพิทยาสรรค์</span>
-                </div>
-            </footer>
 
         </div>
     </div>
 </div>
 
-<!-- ================= MODAL สรุปการแจ้งเตือนสวยงามและแสดงผลบนทุกขนาดหน้าจอ ================= -->
 <div class="modal fade" id="statusModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-dialog-centered modal-sm-tablet">
-        <div class="modal-content mx-3"> <!-- มาร์จิ้นรอบนอกกันขอบจอตัดกรณีหน้าจอเล็กมาก -->
-            
-            <div class="modal-header-custom" id="modalHeaderArea">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                
                 <div id="modalIcon"></div>
-                <h3 class="fw-bold" id="modalTitle">แจ้งเตือน</h3>
-            </div>
-            
-            <div class="modal-body-custom">
-                <p class="text-muted mb-2 small" id="modalMessage">รายละเอียดการตอบรับข้อมูลของคุณ</p>
                 
-                <!-- กล่องแสดงสรุปข้อมูลเพื่อความอุ่นใจของผู้กรอกฟอร์ม -->
-                <div class="info-summary-box" id="modalSummaryBox">
-                    <div class="mb-2 text-truncate"><strong><i class="fa-solid fa-school text-muted me-2"></i>โรงเรียน/หน่วยงาน:</strong> <span id="sumSchool"></span></div>
-                    <div class="mb-2 text-truncate"><strong><i class="fa-solid fa-user text-muted me-2"></i>ผู้เข้าร่วมพิธีเปิด:</strong> <span id="sumName"></span></div>
-                    <div class="mb-2 text-truncate"><strong><i class="fa-solid fa-id-card text-muted me-2"></i>ตำแหน่ง:</strong> <span id="sumPosition"></span></div>
+                <h4 id="modalTitle" class="fw-bold"></h4>
+                <p id="modalMessage" class="text-muted my-3"></p>
+                
+                <div id="modalSummaryBox" class="summary-box text-start d-none mb-4">
+                    <p class="mb-1"><strong><i class="fa-solid fa-school me-2 text-secondary"></i>หน่วยงาน:</strong> <span id="sumSchool"></span></p>
+                    <p class="mb-1"><strong><i class="fa-solid fa-user me-2 text-secondary"></i>ผู้ส่ง:</strong> <span id="sumName"></span></p>
+                    <p class="mb-0"><strong><i class="fa-solid fa-user-tie me-2 text-secondary"></i>ตำแหน่ง:</strong> <span id="sumPosition"></span></p>
                 </div>
                 
-                <div class="mt-4 d-grid">
-                    <button type="button" class="btn btn-dark py-2.5 rounded-3" data-bs-dismiss="modal">ตกลงและปิดหน้านี้</button>
-                </div>
+                <button type="button" class="btn btn-secondary px-4 py-2" data-bs-dismiss="modal" style="border-radius: 8px;">ปิดหน้าต่าง</button>
             </div>
-            
         </div>
     </div>
 </div>
 
-<!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
@@ -452,7 +243,7 @@
             document.getElementById('modalIcon').innerHTML = '<div class="modal-icon-error"><i class="fa-solid fa-circle-exclamation"></i></div>';
             document.getElementById('modalTitle').className = "fw-bold text-danger";
             document.getElementById('modalTitle').innerText = "เกิดข้อผิดพลาดในการส่ง";
-            document.getElementById('modalMessage').innerText = "เครือข่ายขันข้องหรือไม่สามารถเข้าถึงเซิร์ฟเวอร์ได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง";
+            document.getElementById('modalMessage').innerText = "เครือข่ายขัดข้องหรือไม่สามารถเข้าถึงเซิร์ฟเวอร์ได้ในขณะนี้ กรุณาลองใหม่อีกครั้ง";
             document.getElementById('modalSummaryBox').classList.add('d-none');
 
             const statusModal = new bootstrap.Modal(document.getElementById('statusModal'));
